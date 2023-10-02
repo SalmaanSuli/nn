@@ -1,0 +1,5 @@
+numpy==1.23.5
+plotly==5.17.0
+streamlit==1.27.1
+torch==2.0.1
+torchviz==0.0.2
