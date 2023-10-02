@@ -263,7 +263,7 @@ def plot_loss_graph(loss_values, title):
 
 # Main function to be run when the Streamlit app is executed
 def main():
-    st.title("Neural Network Visualizations")
+    st.title("Neural Network Visualisations (S. Suliman)")
 
     # Sidebar for user inputs
     st.sidebar.header("Settings")
@@ -271,10 +271,10 @@ def main():
     selected_model = st.sidebar.selectbox(
         "Choose a model",
         options=[
-            "No Regularization",
-            "L1 Regularization",
-            "L2 Regularization",
-            "L1 & L2 Regularization",
+            "No Regularisation",
+            "L1 Regularisation",
+            "L2 Regularisation",
+            "L1 & L2 Regularisation",
             "Dropout",
             "Noise Injection",
         ],
@@ -282,10 +282,10 @@ def main():
 
     # Create a dictionary to map model names to their instances
     model_mapping = {
-        "No Regularization": ComplexNN(),
-        "L1 Regularization": ComplexNN(l1_reg=0.01),
-        "L2 Regularization": ComplexNN(l2_reg=0.01),
-        "L1 & L2 Regularization": ComplexNN(l1_reg=0.01, l2_reg=0.01),
+        "No Regularisation": ComplexNN(),
+        "L1 Regularisation": ComplexNN(l1_reg=0.01),
+        "L2 Regularisation": ComplexNN(l2_reg=0.01),
+        "L1 & L2 Regularisation": ComplexNN(l1_reg=0.01, l2_reg=0.01),
         "Dropout": ComplexNN(dropout_rate=0.5),
         "Noise Injection": ComplexNN(noise_std=0.1),
     }
@@ -297,7 +297,7 @@ def main():
     )
 
     # Display plots
-    st.subheader("NN Function Approximation")
+    st.subheader("Testing and Visualising NN for Function Approximation")
     st.plotly_chart(plotly_animation(x, y_true, y_noisy, predictions_list))
 
     st.subheader(f"{selected_model} - Loss over Epochs")
