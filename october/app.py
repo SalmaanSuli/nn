@@ -481,7 +481,7 @@ def main():
         "Activation Function", list(ACTIVATION_FUNCTIONS.keys())
     )
 
-    early_stopping = st.sidebar.checkbox("Use Early Stopping", value=True)
+    early_stopping = st.sidebar.checkbox("Use Early Stopping", value=False)
     patience = st.sidebar.slider("Early Stopping Patience", 1, 50, 10)
 
     # Select a single model
