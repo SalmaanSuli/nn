@@ -445,6 +445,7 @@ def weight_distribution_animation(weights_list):
 # Main function to be run when the Streamlit app is executed
 def main():
     st.title("Neural Network Visualisations")
+    st.write('Salmaan Suliman')
 
     # Sidebar for user inputs
     st.sidebar.header("Settings")
@@ -471,8 +472,8 @@ def main():
     num_epochs = st.sidebar.slider("Number of Epochs", 10, 200, 100)
 
     # Model Parameters
-    l1_reg = st.sidebar.slider("L1 Regularization", 0.0, 0.1, 0.01, 0.01)
-    l2_reg = st.sidebar.slider("L2 Regularization", 0.0, 0.1, 0.01, 0.01)
+    l1_reg = st.sidebar.slider("L1 Regularisation", 0.0, 0.1, 0.01, 0.01)
+    l2_reg = st.sidebar.slider("L2 Regularisation", 0.0, 0.1, 0.01, 0.01)
     dropout_rate = st.sidebar.slider("Dropout Rate", 0.0, 1.0, 0.5, 0.1)
     noise_std = st.sidebar.slider("Noise Standard Deviation", 0.0, 1.0, 0.1, 0.1)
 
@@ -487,10 +488,10 @@ def main():
     selected_model = st.sidebar.selectbox(
         "Choose a model",
         options=[
-            "No Regularization",
-            "L1 Regularization",
-            "L2 Regularization",
-            "L1 & L2 Regularization",
+            "No Regularisation",
+            "L1 Regularisation",
+            "L2 Regularisation",
+            "L1 & L2 Regularisation",
             "Dropout",
             "Noise Injection",
             "Custom Model",
@@ -502,10 +503,10 @@ def main():
         "Choose a second model to compare",
         options=[
             "None",
-            "No Regularization",
-            "L1 Regularization",
-            "L2 Regularization",
-            "L1 & L2 Regularization",
+            "No Regularisation",
+            "L1 Regularisation",
+            "L2 Regularisation",
+            "L1 & L2 Regularisation",
             "Dropout",
             "Noise Injection",
             "Custom Model",
@@ -515,10 +516,10 @@ def main():
     # Mapping of model names to their instances
     model_mapping = {
         # Mapping of model names to their instances
-        "No Regularization": ComplexNN(),
-        "L1 Regularization": ComplexNN(l1_reg=0.01),
-        "L2 Regularization": ComplexNN(l2_reg=0.01),
-        "L1 & L2 Regularization": ComplexNN(l1_reg=0.01, l2_reg=0.01),
+        "No Regularisation": ComplexNN(),
+        "L1 Regularisation": ComplexNN(l1_reg=0.01),
+        "L2 Regularisation": ComplexNN(l2_reg=0.01),
+        "L1 & L2 Regularisation": ComplexNN(l1_reg=0.01, l2_reg=0.01),
         "Dropout": ComplexNN(dropout_rate=0.5),
         "Noise Injection": ComplexNN(noise_std=0.1),
         "Custom Model": ComplexNN(
