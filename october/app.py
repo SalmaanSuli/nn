@@ -446,8 +446,7 @@ def weight_distribution_animation(weights_list):
 def main():
     st.title("Neural Network Visualisations")
     st.write('Testing and Visualising Regularisation in Neural Networks for Function Approximation')
-    st.write('Researcher: Salmaan Suliman')
-    st.write('Supervisor: Prof,. Clint van Alten')
+    st.write('Researcher: Salmaan Suliman    |    Supervisor: Prof. Clint van Alten')
 
     # Sidebar for user inputs
     st.sidebar.header("Settings")
