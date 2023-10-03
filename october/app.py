@@ -445,7 +445,9 @@ def weight_distribution_animation(weights_list):
 # Main function to be run when the Streamlit app is executed
 def main():
     st.title("Neural Network Visualisations")
-    st.write('Salmaan Suliman')
+    st.write('Testing and Visualising Regularisation in Neural Networks for Function Approximation')
+    st.write('Researcher: Salmaan Suliman')
+    st.write('Supervisor: Prof,. Clint van Alten')
 
     # Sidebar for user inputs
     st.sidebar.header("Settings")
