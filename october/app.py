@@ -448,6 +448,7 @@ def main():
     st.write('Testing and Visualising Regularisation in Neural Networks for Function Approximation')
     st.write('Researcher: Salmaan Suliman    |    Supervisor: Prof. Clint van Alten')
 
+    
     # Sidebar for user inputs
     st.sidebar.header("Settings")
 
