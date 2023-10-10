@@ -80,6 +80,12 @@ class SimpleNN(nn.Module):
         x = self.layer3(x)
         return x
 
+    def regularisation_loss(self):
+        l1_loss = sum(p.abs().sum() for p in self.parameters())
+        l2_loss = sum(p.pow(2).sum() for p in self.parameters())
+        return self.l1_reg * l1_loss + self.l2_reg * l2_loss
+
+
 # Neural Network definition
 class ComplexNN(nn.Module):
     def __init__(
@@ -490,17 +496,7 @@ def main():
     
     # Sidebar for user inputs
     st.sidebar.header("Settings")
-    
-    # Batch Normalization Option
-    use_batch_norm = st.sidebar.checkbox("Use Batch Normalization", value=False)
-    if use_batch_norm:
-        batch_size = st.sidebar.slider("Batch Size", 10, 200, 50)
-        # Create a DataLoader with the specified batch size
-        dataset = TensorDataset(x_train_tensor, y_train_tensor)
-        train_loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
-    else:
-        train_loader = [(x_train_tensor, y_train_tensor)]
-    
+
 
     # Custom True Function Input
     custom_function = st.sidebar.text_input(
@@ -522,23 +518,24 @@ def main():
     y_train_tensor = torch.tensor(y_noisy, dtype=torch.float32).view(-1, 1)
 
     num_epochs = st.sidebar.slider("Number of Epochs", 10, 200, 100)
+    
+    # Batch Normalization Option
+    use_batch_norm = st.sidebar.checkbox("Use Batch Normalization", value=False)
+    if use_batch_norm:
+        batch_size = st.sidebar.slider("Batch Size", 10, 200, 50)
+        # Create a DataLoader with the specified batch size
+        dataset = TensorDataset(x_train_tensor, y_train_tensor)
+        train_loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
+    else:
+        train_loader = [(x_train_tensor, y_train_tensor)]
 
-    # Model Parameters
+
+     # Model Parameters
     l1_reg = st.sidebar.slider("L1 Regularisation", 0.0, 0.1, 0.0001, 0.0001)
     l2_reg = st.sidebar.slider("L2 Regularisation", 0.0, 0.1, 0.0001, 0.0001)
+    
     dropout_rate = st.sidebar.slider("Dropout Rate", 0.0, 1.0, 0.5, 0.1)
     noise_std = st.sidebar.slider("Noise Standard Deviation", 0.0, 1.0, 0.1, 0.1)
-
-
-    # Animated function approximation graph
-    st.subheader(f"{selected_model} - Function Approximation over Epochs")
-    function_graph = plotly_animation(x, y_true, y_noisy, predictions_list)
-    function_graph.update_layout(
-        xaxis_range=[-2*np.pi, 2*np.pi],  # static x-axis range
-        yaxis_range=[-10, 10]  # static y-axis range; modify accordingly
-    )
-    st.plotly_chart(function_graph)
-
 
     activation = st.sidebar.selectbox(
         "Activation Function", list(ACTIVATION_FUNCTIONS.keys())
@@ -646,6 +643,15 @@ def main():
     st.plotly_chart(weight_distribution_animation(weights_list))
     
     
+    # Animated function approximation graph
+    st.subheader(f"{selected_model} - Function Approximation over Epochs")
+    function_graph = plotly_animation(x, y_true, y_noisy, predictions_list)
+    function_graph.update_layout(
+        xaxis_range=[-2*np.pi, 2*np.pi],  # static x-axis range
+        yaxis_range=[-10, 10]  # static y-axis range; modify accordingly
+    )
+    st.plotly_chart(function_graph)
+
 
 
 # Run the Streamlit app
